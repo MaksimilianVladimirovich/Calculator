@@ -85,7 +85,7 @@ namespace Calculator
 				ButtonWithNumberClick(',');
 			}
 
-            if (ElementsOfOperation.Operation != '\0' && ElementsOfOperation.FirstNumber != 0 && !EnterTextBox.Text.Remove(0, ElementsOfOperation.FirstNumber.ToString().Count() + 1).Contains(","))
+            if (ElementsOfOperation.Operation != '\0' && !EnterTextBox.Text.Remove(0, ElementsOfOperation.FirstNumber.ToString().Count() + 1).Contains(",") && EnterTextBox.Text.Remove(0, ElementsOfOperation.FirstNumber.ToString().Count() + 1).Count() > 0)
             {
 				ButtonWithNumberClick(',');
 			}
@@ -95,7 +95,7 @@ namespace Calculator
         #region Operations
         private void buttonEqual_Click(object sender, EventArgs e)
         {
-            if (!EnterTextBox.Text.Contains("=") && EnterTextBox.Text.Count() > 0 && ElementsOfOperation.FirstNumber != 0)
+            if (!EnterTextBox.Text.Contains("=") && EnterTextBox.Text.Count() > 0)
             {
                 ButtonWithOperationClick('=');
             }
@@ -172,7 +172,7 @@ namespace Calculator
         /// <param name="e"></param>
         private void buttonCE_Click(object sender, EventArgs e)
         {
-            if (ElementsOfOperation.FirstNumber != 0 && ElementsOfOperation.FirstNumber.ToString().Count() + 1 < EnterTextBox.Text.Count())
+            if (ElementsOfOperation.FirstNumber.ToString().Count() + 1 < EnterTextBox.Text.Count() && ElementsOfOperation.Operation != '\0')
             {
                 EnterTextBox.Text = EnterTextBox.Text.Substring(0, ElementsOfOperation.FirstNumber.ToString().Count() + 1);
             }
@@ -194,7 +194,7 @@ namespace Calculator
         /// <param name="e"></param>
         private void buttonC_Click(object sender, EventArgs e)
         {
-            if (ElementsOfOperation.FirstNumber != 0 && ElementsOfOperation.Operation != '\0' && ElementsOfOperation.FirstNumber.ToString().Count() + 1 < EnterTextBox.Text.Count())
+            if (ElementsOfOperation.Operation != '\0' && ElementsOfOperation.FirstNumber.ToString().Count() + 1 < EnterTextBox.Text.Count())
             {
                 MakingOperation = false;
                 EnterTextBox.Text = EnterTextBox.Text.Substring(ElementsOfOperation.FirstNumber.ToString().Count() + 1);
@@ -219,7 +219,7 @@ namespace Calculator
                     ElementsOfOperation.Operation = '\0';
                     MakingOperation = false;
 				}
-                if(ElementsOfOperation.FirstNumber != 0 && EnterTextBox.Text == ElementsOfOperation.FirstNumber.ToString())
+                if(EnterTextBox.Text == ElementsOfOperation.FirstNumber.ToString())
                 {
                     ElementsOfOperation.FirstNumber = Convert.ToDouble(EnterTextBox.Text.Remove(EnterTextBox.Text.Count() - 1) == "" ? 0 : Convert.ToDouble(EnterTextBox.Text.Remove(EnterTextBox.Text.Count() - 1)));
 				}
