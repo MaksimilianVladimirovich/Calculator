@@ -227,8 +227,12 @@ namespace Calculator
                     (EnterTextBox.Text.LastIndexOf(EnterTextBox.Text.Last()));
             }
         }
-        #endregion
-        private void ButtonWithNumberClick(char number)
+		#endregion
+		/// <summary>
+		/// Add number in the text box
+		/// </summary>
+		/// <param name="number"></param>
+		private void ButtonWithNumberClick(char number)
         {
             if (EnterTextBox.Text.Count() < 15)
             {
@@ -240,6 +244,10 @@ namespace Calculator
 			}
         }
 
+        /// <summary>
+        /// Add operation in the text box and execute method if "=" was entered
+        /// </summary>
+        /// <param name="operation"></param>
         private void ButtonWithOperationClick(char operation)
         {
             EnterTextBox.Text += operation;
